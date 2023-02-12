@@ -46,6 +46,22 @@ footer .social>a:hover {
     color: var(--secondary-color);
 }
 
+footer .my-link>a:link {
+    color: var(--white-color)
+}
+
+footer .my-link>a:hover {
+    color: var(--secondary-color)
+}
+
+footer .my-link>a:active {
+    color: var(--white-color)
+}
+
+footer .my-link>a:visited {
+    color: var(--white-color)
+}
+
 .text-my-color {
     color: var(--secondary-color);
 }
