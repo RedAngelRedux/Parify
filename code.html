@@ -69,18 +69,98 @@
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            // Call HelloWorld
-                            function HelloWorld() {
-                                alert("Hello World");
-                            }                            
-                        </code>
+                            // START OR CONTROLLER FUNCTION
+                            // get the values from the UI
+                            function getValues() {
+                                
+                                // get values from the page
+                                let startValue =  document.getElementById("startValue").value;
+                                let endValue = document.getElementById("endValue").value;
+                            
+                                // Attempt to Parse Into IInterger
+                                startValue = parseInt(startValue);
+                                endValue = parseInt(endValue);
+                            
+                                if(Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                                    if(startValue < endValue) {
+                                    // call generateNumber()
+                                    let numbers = generateNumbers(startValue,endValue);
+                                    // call displayNumbers()
+                                    displayNumbers(numbers);
+                                    } else {
+                                        alert("The start value must be less than the end value");
+                                    }
+                                } else {
+                                    alert("You Must Enter Integers");
+                                }
+                            
+                            }
+                            
+                            // LOGIC FUNCTION(S)
+                            // generate number from startVAlue to the endValue
+                            function generateNumbers(sValue, eValue) {
+                            
+                                let numbers = [];
+                            
+                                // we want to get all numbers from start to end
+                                for (let index = sValue; index <= eValue; index++) {
+                                    numbers.push(index);
+                                }
+                            
+                                return numbers;
+                            }
+                            
+                            // DISPLAY OR VIEW FUNCTION
+                            // display the numbers and make the even numbers bold
+                            function displayNumbers(numbers) {
+                            
+                                let templateRow = "";
+                            
+                                for (let index = 0; index < numbers.length; index++) {
+                            
+                                    let className = "even";
+                            
+                                    let number = numbers[index];
+                                    
+                                    if(number % 2 == 0) {
+                                        className = "even";
+                                    } else {
+                                        className = "odd";
+                                    }  
+                            
+                                    templateRow += &tilde;&lt;tr&gt;&lt;td class=${className}&gt;${number}&lt;/td&gt;&lt;/tr&gt;&tilde;;
+                                    
+                                }
+                            
+                                document.getElementById("results").innerHTML = templateRow;
+                            
+                            }                        </code>
                     </pre>
                 </div>
+                
                 <!-- === DESCRIPTION OF CODE ==== -->
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>HelloWorld</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <p>Even though the logic for solving this coding challenge is very basic and could 
+                        have all been handled in one funciton, I rendered it in three functions in order 
+                        to maintain my habit and practice of modularizing my code, making it easy to 
+                        follow, and maintaining a separation of concerns. </p>
+                    <h5>getValues()</h5>
+                    <p>The getValues function is the application's controller function.  It is the function 
+                        that will be triggered when the user clicks on the "Parify Go" button and it is 
+                        reponsible for calling all of the supporting functions necessary to complete the task.  It will also 
+                        validate the data provided and prematuresly terminate the process, if validation fails, after providing 
+                        the user with an informative message.</p>
+                    <h5>generateNumbers()</h5>
+                    <p>This function will simply loop through the range given and build an array of all numbers, in consecutive 
+                        order, between the start value and the end value inclusive.  It will then return the completed array to 
+                        the consumer.</p>
+                    <h5>displayNumbers()</h5>
+                    <p>This function is responsible for building the necessary HTML to display the contents 
+                        of the numbers array in html table form.  It is only responsible for rendering 
+                        the &lt;td&gt; & &lt;tr&gt; for the table since the rest is already rendered in the html 
+                        docuemnt itself.  The function will also apply an "even" or "odd" class to each 
+                        &lt;td&gt; so that the appearance of even number can be controlled via CSS.  
+                        The html is built by using a javascript template string and inserted into the DOM by locating the "results" elemnet by ID.</p>
                 </div>
             </idv>
         </div>
