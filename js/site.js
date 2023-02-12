@@ -11,10 +11,14 @@ function getValues() {
     endValue = parseInt(endValue);
 
     if(Number.isInteger(startValue) && Number.isInteger(endValue)) {
+        if(startValue < endValue) {
         // call generateNumber()
         let numbers = generateNumbers(startValue,endValue);
         // call displayNumbers()
         displayNumbers(numbers);
+        } else {
+            alert("The start value must be less than the end value");
+        }
     } else {
         alert("You Must Enter Integers");
     }
